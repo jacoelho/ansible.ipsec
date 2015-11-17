@@ -1,0 +1,16 @@
+#!/usr/sbin/setkey -f
+# This file is managed by Ansible, all changes will be lost.
+flush;
+spdflush;
+
+{% for host in ipsec_hosts %}
+{% for host2 in ipsec_hosts %}
+{% if host != host2 %}
+spdadd {{ host }}/32 {{ host2  }}/32 any -P in ipsec
+  esp/transport//require;
+spdadd {{ host2  }}/32 {{ host }}/32 any -P out ipsec
+  esp/transport//require;
+
+{% endif %}
+{% endfor %}
+{% endfor %}

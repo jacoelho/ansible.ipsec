@@ -1,0 +1,23 @@
+# This file is managed by Ansible, all changes will be lost.
+log notify;
+path pre_shared_key "/etc/racoon/psk.txt";
+
+remote anonymous {
+  exchange_mode main;
+  proposal {
+    encryption_algorithm {{ ipsec_crypto_algorithm }};
+    hash_algorithm {{ ipsec_crypto_hash  }};
+    authentication_method pre_shared_key;
+    dh_group {{ ipsec_dh_group }};
+  }
+  generate_policy off;
+  lifetime {{ ipsec_lifetime }};
+
+}
+
+sainfo anonymous{
+  pfs_group {{ ipsec_pfs_group }};
+  encryption_algorithm {{ ipsec_crypto_algorithm }};
+  authentication_algorithm {{ ipsec_crypto_authentication }};
+  compression_algorithm deflate;
+}

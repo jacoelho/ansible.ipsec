@@ -1,0 +1,4 @@
+# This file is managed by Ansible, all changes will be lost.
+{% for host in ipsec_hosts %}
+{{ host }} {{ ipsec_psk }}
+{% endfor %}

@@ -1,0 +1,36 @@
+---
+
+- name: ipsec | configure ipsec-tools
+  template:
+    src: "ipsec-tools.conf.j2"
+    dest: "/etc/ipsec-tools.conf"
+    mode: 0600
+    owner: root
+    group: root
+  become: yes
+  become_method: sudo
+  notify: restart setkey
+
+- name: ipsec | configure racoon
+  template:
+    src: "racoon.conf.j2"
+    dest: "/etc/racoon/racoon.conf"
+    mode: 0600
+    owner: root
+    group: root
+  become: yes
+  become_method: sudo
+  notify: restart racoon
+
+- name: ipsec | configure racoon password
+  template:
+    src: "psk.txt.j2"
+    dest: "/etc/racoon/psk.txt"
+    mode: 0600
+    owner: root
+    group: root
+  become: yes
+  become_method: sudo
+  notify: restart racoon
+
+- meta: flush_handlers

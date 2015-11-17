@@ -1,0 +1,15 @@
+---
+
+- name: restart racoon
+  service:
+    name: racoon
+    state: "restarted"
+  become: yes
+  become_method: sudo
+
+- name: restart setkey
+  service:
+    name: setkey
+    state: "restarted"
+  become: yes
+  become_method: sudo

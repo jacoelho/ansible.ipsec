@@ -1,0 +1,11 @@
+---
+
+ipsec_psk: "password"
+ipsec_crypto_algorithm: "aes_256"
+ipsec_crypto_hash: "sha1"
+ipsec_crypto_authentication: "hmac_sha1"
+ipsec_dh_group: "modp1024"
+ipsec_pfs_group: "2"
+ipsec_lifetime: "time 12 hour"
+
+ipsec_hosts: []
